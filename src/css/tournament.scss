@@ -1,0 +1,315 @@
+@import "colors";
+
+$min-width:100px;
+
+#tournament-head {
+    border-bottom:1px solid #ccc;
+    background-color: #ededed;
+    min-width:$min-width;
+
+    .tournament-wrap {
+        display:flex;
+        justify-content:space-between;
+        align-items: center;
+        max-width:1800px;
+        margin:auto;
+        padding:0px 20px 0px 20px;
+    }
+
+    img {
+        padding:10px 0px 10px 0px;
+        width:100px;
+    }
+
+
+    a {
+        font-size:16px;
+        white-space: nowrap;
+        margin-left:20px;
+    }
+}
+
+#tournament {
+    margin:auto;
+    max-width:1800px;
+
+    .hide {display:none;}
+    .show {display:block;}
+
+
+    .box {
+        padding:15px;
+        border:1px solid #ccc;
+        margin:20px;
+        background-color:#fff;
+        border-radius:2px;
+        min-width:$min-width;
+    }
+
+
+
+    .bracket-container {
+        width:100%;
+        min-width:fit-content;
+        padding:20px;
+        background-color:#FAFAFA;
+        border-top:#EBEBEB 1px solid;
+        
+        span {
+            color:#ccc;
+            font-style:italic;
+        }
+    }
+
+    .overflow {
+        overflow-x:auto;
+    }
+
+    h3 {
+        font-size:25px;
+        padding-bottom:15px;
+    }
+
+    h4 {
+        font-size:20px;
+        margin-top:20px;
+        margin-bottom:10px;
+    }
+
+    .info-text {
+        display:flex;
+        align-items:center;
+        margin-bottom:5px;
+    }
+
+    .status {
+        background-color:#EBEAFF;
+        border-radius:2px;
+        border:1px solid #0BC1FF;
+        padding:10px;
+        margin-left:20px;
+    }
+
+    .info {
+        margin:20px;
+        min-width:$min-width;
+
+        h1 {
+            //text-transform: uppercase;
+            font-size:40px;
+        }
+
+        span {
+            //display: inline-block;
+            max-width:600px;
+            //min-width:$min-width;
+        }
+    }
+
+    .fixed {
+        min-width:fit-content;
+    }
+
+
+    .select-groups {
+        margin-left:20px;
+        margin-right:20px;
+        margin-bottom:50px;
+
+        nav {
+            background-color:#ededed;
+            border-radius:2px 2px 0px 0px;
+            display:flex;
+            padding:0px 10px 0px 10px;
+            border-style:solid;
+            border-color:#ccc;
+            border-width:1px 1px 0px 1px;
+
+            & > div {
+                width:50%;
+                text-align:center;
+                padding:20px 0px 20px 0px;
+                margin-right:10px;
+                
+                border-bottom:4px solid transparent;
+                cursor:pointer;
+            
+                &:nth-last-child(1) {
+                    margin-right:0;
+                }
+            }
+
+            div:not(.selected):hover {
+                border-bottom:4px solid #ccc;
+            }
+            
+
+            .selected {
+                border-bottom:4px solid $gold;
+            //div:nth-child(1){
+                /*border-radius:2px 0px 0px 0px;
+                background-color:#fff;
+                border-bottom:1px solid #fff;
+            */
+            }
+
+            & > div:nth-last-child(1){
+                //border-right:1px solid #ccc;
+                //border-radius:0px 2px 0px 0px;
+            }
+        }
+
+        .padding-1 {padding:20px;}
+        .padding-2 {padding: 20px 0px 0px 0px; h3 {padding-left: 20px; padding-bottom:20px;}}
+
+        main {
+            background-color:#fff;
+            border:1px solid #ccc;
+            min-width:$min-width;
+
+            .list {
+                padding:10px 10px 0px 10px;
+                background-color:#ededed;
+                border-bottom:1px solid #ccc;
+
+                .row {
+                    margin-bottom:10px;
+                    display:flex;
+
+                    div {
+                        border:1px solid #ccc;
+                        border-radius:2px;
+                        padding:10px;
+                        cursor:pointer;
+                        width:100%;
+                        max-width:25%;
+                        text-align:center;
+                        margin-right:10px;
+                        background-color:#fff;
+                    }
+
+                    div:hover {
+                        border:1px solid $gold;
+                    }
+
+                    div:nth-last-child(1){
+                        margin-right:0;
+                    }
+
+                    div::before {
+                        content:"Grupp ";
+                    }
+
+                    .selected {
+                        background-color:$gold;
+                        border:1px solid $gold;
+                        background-image: radial-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1));
+
+                    }
+
+                }
+            }
+
+            .group-info {
+                font-style:italic;
+                color:#ccc;
+                padding-top:10px;
+                font-size:14px;
+            }
+        }
+    }
+
+
+    @media screen and (max-width: 600px) {
+        .info-text {
+            flex-direction:column;
+            align-items:flex-start;
+        }
+
+        .status {
+            margin:10px 0px 10px 0px;
+        }
+
+        .select-groups {
+            main {
+                .list {
+                    .row {
+                        div::before {
+                            content:"";
+                        }
+
+                        div {
+                            padding:15px 0px 15px 0px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .info {
+            h1 {
+                font-size:35px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 400px) {
+        .info {
+            h1 {
+                font-size:28px;
+            }
+        }
+    }
+}
+
+.no-tournament {
+    margin:auto;
+    max-width:500px;
+    width:100%;
+    text-align:center;
+    padding:20px;
+    margin-top:50px;
+
+    h1 {
+        font-size:35px;
+    }
+
+    p {
+        margin-top:10px;
+        font-style:italic;
+    }
+
+    .link {
+        margin-top:20px;
+        margin-bottom:20px;
+        font-size:30px;
+        padding-bottom:60px;
+    }
+
+    .line {
+        width:100%;
+        max-width:100px;
+        margin:20px;
+        margin:auto;
+        border-bottom:1px solid #ccc;
+    }
+}
+
+.shadow {
+    height:30px;
+    position: absolute;
+    width:25px;
+    height:100%;
+}
+
+.shadow-left {
+    border-radius:2px 0px 0px 2px;
+    left:0;
+    background-image: linear-gradient(to left, rgba(0,0,0,0), rgba(0,0,0,0.2));
+}
+
+.shadow-right {
+    border-radius:0px 2px 2px 0px;
+    right:0;
+    background-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.2));
+}
