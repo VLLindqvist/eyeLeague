@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 // import { Link, Redirect } from 'react-router-dom';
 
-import FutureGames from './ManageTourComps/FutureGames';
+import FutureGamesSerie from './ManageSerieComps/FutureGamesSerie';
 import Tabell from './Tabell';
 
-import '../css/managetour.scss';
+import '../css/manageserie.scss';
 import '../css/bootstrap.css';
 
 class ManageSerie extends Component {
@@ -62,7 +62,7 @@ class ManageSerie extends Component {
     edit = (
       <div className="editContainer">
         <div id="futureGamesWrap">
-          <FutureGames
+          <FutureGamesSerie
             data={this.state.data}
             fetchData={this.props.fetchData}
             bracket={false}
@@ -79,7 +79,7 @@ class ManageSerie extends Component {
     resultatClass = 'editWrap';
 
     return (
-      <div id="manageTour" ref={this.ref}>
+      <div id="manageSerie" ref={this.ref}>
         <div className={resultatClass}>
           {edit}
         </div>

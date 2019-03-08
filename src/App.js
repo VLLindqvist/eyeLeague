@@ -11,11 +11,11 @@ import Login from "./components/Login";
 import Logout from "./components/Logout";
 import Tournament from "./components/Tournament";
 import Error from "./components/Error";
-import Manage from "./components/Manage";
+import ManageS from "./components/ManageS";
 
 
 // ta bort!
-import Test from "./components/Edit";
+import Edit from "./components/Edit";
 import Verify from "./components/Verify";
 
 
@@ -132,10 +132,9 @@ class Admin extends Component {
 		// 	<Link activeClassName="selected" to={settings.url + "create/"}>Skapa serie</Link>
 		// </nav
 		//<Link to={settings.url + "manage/"}><img src={logo} alt="logo my logo"></img></Link>
-		//onMouseOver={this.accountClose}
 
-		//onMouseOut={this.accountSelect}
 		const url = window.location.href.split("/").filter(String);
+		// console.log(url[0] + "//account." + url[1]);
 		return(
 			<div>
 				<header>
@@ -163,7 +162,8 @@ class Admin extends Component {
 								<div onMouseEnter={this.accountSelect} onMouseLeave={this.accountClose}>
 									<div className="settings">
 										<div><span/><span/><span/><span/><span/></div>
-										<Link to={settings.url + url[0] + "//account." + url[1]}>Mitt konto</Link>
+										{/*}<a href={url[0] + "//account." + url[1]}>Mitt konto</a>{*/}
+										<Link to={settings.url + "account"}>Mitt konto</Link>
 									</div>
 									<div className="logout">
 										<span><Link to={settings.url + "logout/"}>Logga ut</Link></span>
@@ -177,9 +177,9 @@ class Admin extends Component {
 				<main className="wrapper" onScroll={this.handleScroll} onClick={this.accountClose}>
 					<Switch>
 						<Route exact path={settings.url + "/"} render={() => {return <Redirect to={settings.url + "manage/"} />;}}/>
-						<Route exact path={settings.url + "manage"} component={Manage} />
+						<Route exact path={settings.url + "manage"} component={ManageS} />
 						{/*<Route exact path={settings.url + "manage"} component={Manage} />*/}
-						<Route exact path={settings.url + "manage/:id"} render={({match}) => <Test username={this.state.username} match={match}></Test>} />
+						<Route exact path={settings.url + "manage/:id"} render={({match}) => <Edit username={this.state.username} match={match}></Edit>} />
 					</Switch>
 				</main>
 			</div>

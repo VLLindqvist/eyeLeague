@@ -1,0 +1,249 @@
+@import "colors";
+
+#manageS {
+  margin-left: 20px;
+  margin-right: 20px;
+  min-width: 280px;
+
+  animation: render 0.3s ease;
+  -webkit-animation: render 0.3s ease;
+
+  @keyframes render {
+     0% {opacity: 0;}
+     100% {opacity: 1;}
+  }
+  @-webkit-keyframes render {
+     0% {opacity: 0;}
+     100% {opacity: 1;}
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .rubrik {
+    border-radius: 0 0 5px 5px;
+    background-color: $background-1;
+    margin-top: 2px;
+  }
+
+  h2 {
+    font-size: 35px;
+    background-color: $background-1;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    @media screen and (max-width: 600px) {
+      font-size: 20pt;
+    }
+  }
+
+  .tur {
+    //height: 85px;
+    border: 1px solid $primary;
+    border-radius: 2px;
+    background-color: #fff;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+    width: 100%;
+    user-select: none;
+    display: flex;
+    overflow: hidden;
+    -webkit-box-shadow: 2px 2px 10px 0px rgba(97,97,97,0.2);
+    -moz-box-shadow: 2px 2px 10px 0px rgba(97,97,97,0.2);
+    box-shadow: 2px 2px 10px 0px rgba(97,97,97,0.2);
+
+    div:first-of-type {
+      width:100%;
+      border-bottom: 8px solid transparent;
+      transition: border-bottom-color 0.3s ease;
+
+      a {
+        width:100%;
+        background-color: $primary;
+        color: black;
+        transition: background-color 0.3s ease;
+      }
+    }
+
+    &:hover {
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+
+      div:first-of-type {
+        border-color: $sec1;
+
+        a {
+          background-color: $sec1;
+          color: black;
+        }
+      }
+    }
+
+    div:last-of-type {
+      display: flex;
+      align-items: center;
+
+      a {
+        white-space: nowrap;
+        color: #55a7f4;
+        border-bottom: 1px solid transparent;
+        transition: all 0.3s ease;
+        margin: 0px 10px 0px 10px;
+
+        &:hover {
+          border-bottom: 1px solid #55a7f4;
+          cursor: pointer;
+          background-color: #fff !important;
+        }
+
+        @media screen and (max-width: 600px) {
+          display: none;
+        }
+      }
+    }
+
+    animation: render2 0.3s ease;
+    -webkit-animation: render2 0.3s ease;
+
+    @keyframes render2 {
+       0% {opacity: 0;}
+       100% {opacity: 1;}
+    }
+    @-webkit-keyframes render2 {
+       0% {opacity: 0;}
+       100% {opacity: 1;}
+    }
+  }
+
+  .skapaNy {
+    margin-bottom: 5px;
+    transition: all 0.3s ease;
+    width: 100%;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+
+    .skapaNyTitel {
+      border: 1px solid $sec1;
+      border-radius: 2px;
+      background-color: $primary;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 50px 20px 50px;
+      color: #fff;
+      font-size: 25px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: $sec1;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      .skapaNyTitel {
+        font-size: 20px;
+
+      }
+    }
+
+    animation: render10 0.3s ease;
+    -webkit-animation: render10 0.3s ease;
+
+    @keyframes render10 {
+       0% {opacity: 0;}
+       100% {opacity: 1;}
+    }
+    @-webkit-keyframes render10 {
+       0% {opacity: 0;}
+       100% {opacity: 1;}
+    }
+  }
+
+  .turWrap {
+    max-width: 900px;
+    //width: 100%;
+    //position: relative;
+  }
+
+  .turContent {
+    //max-height: calc(100vh - 60px - );
+    width: 100%;
+  }
+
+  .turtitel {
+    font-size: 30px;
+    padding: 20px;
+
+    @media screen and (max-width: 600px) {
+      font-size: 18pt;
+      padding: 20px;
+    }
+  }
+
+  .turinfo {
+    font-size: 9pt;
+    font-style: italic;
+    text-align: right;
+    margin-right: 10px;
+    position: relative;
+    height: 0;
+    border: none !important;
+
+    p {
+      color: gray;
+      position: absolute;
+      right: 7px;
+      top: 5px;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .loading {
+    background: transparent;
+    font-size:0;
+    width:30px;
+    height:30px;
+    border-radius:100%;
+    padding:0;
+    border:3px solid #fff;
+    border-bottom:3px solid rgba(255,255,255,0.0);
+    border-left:3px solid rgba(255,255,255,0.0);
+    animation-name: rotateAnimation;
+    animation-duration: 0.5s;
+    //animation-delay: 0.2s;
+    animation-iteration-count: infinite;
+  }
+
+  .loadingtitel {
+    border-radius: 2px;
+    font-size: 30pt;
+    margin: -25px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: lightgray;
+    color: lightgray;
+    width: 40%;
+    max-width: 400px;
+  }
+
+  .loadinginfo {
+    border-radius: 2px;
+    margin-left: 90%;
+    width: 10%;
+    background-color: lightgray;
+    font-size: 10pt;
+    color: lightgray;
+    margin-bottom: 2px;
+  }
+
+}

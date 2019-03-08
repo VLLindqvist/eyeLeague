@@ -4,14 +4,14 @@ import { Modal } from 'react-bootstrap';
 
 import settings from "../settings.json";
 
-import Settings from "./Settings";
+import SettingsSerie from "./SettingsSerie";
 import ManageSerie from "./ManageSerie";
 // import FutureGames from './ManageTourComps/FutureGames';
 
 import '../css/test.scss';
 
 
-class Test extends Component {
+class Edit extends Component {
     constructor(props){
         super(props);
 
@@ -108,7 +108,7 @@ class Test extends Component {
         if(this.state.tab === 1){
             content =
                 <div>
-                    <Settings trigger={this.update} data={this.state.data}></Settings>
+                    <SettingsSerie trigger={this.update} data={this.state.data}/>
                 </div>;
         }
 
@@ -157,4 +157,4 @@ class Test extends Component {
     }
 }
 
-export default Test;
+export default Edit;
