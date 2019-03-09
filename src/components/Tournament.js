@@ -20,15 +20,15 @@ class Tournament extends Component {
 
 		this.state = {loading: true, error: false, data: {}, status: []};
 
-		if(props.match.params.id == null || props.match.params.id.length < 10 || props.match.params.id.length > 20){
+		if(props.match.params.id == null || props.match.params.id.length < 10 || props.match.params.id.length > 20) {
 			this.state.error = true;
 			this.state.loading = false;
 		}else {
-			fetch(settings.api + "?t=" + props.match.params.id.replace(/\&/, ''), {
+			fetch(settings.api + "?t=" + props.match.params.id.replace("&", ''), {
 				method: "GET",
 				credentials: "include"
 			}).then((response) => {
-				if(response.status != '200'){throw 0;}
+				if(!response.ok){throw response.statusText;}
 				return response.json();
 			}).then((response) => {
 				document.title = response.name;
@@ -40,7 +40,7 @@ class Tournament extends Component {
 		}
 
 		this.status = this.status.bind(this);
-		
+
 	}
 
 	async status(){
@@ -69,7 +69,7 @@ class Tournament extends Component {
 	}
 
 	render() {
-		if(this.state.loading){return <div id="root-loading"><div class="root-spinner"></div></div>;}
+		if(this.state.loading){return <div id="root-loading"><div className="root-spinner"></div></div>;}
 
 		let link;
 		if(!this.state.error){
@@ -96,7 +96,7 @@ class Tournament extends Component {
 					<div className="no-tournament">
 						<h1>Ingen turnering hittades</h1>
 						<p>Vänligen kontrollera att du angav korrekt address!</p>
-						<div className="link">&#128279; = &#128148;</div>
+						<div className="link"><span role="img" aria-label="broken link">&#128279; = &#128148;</span></div>
 						<div className="line"></div>
 					</div>
 				</div>
@@ -140,8 +140,8 @@ class Nav extends Component {
 		console.log(this.props.completed);
 		return (
 			<nav>
-				<div className={this.state.show == 0 ? "selected" : null} onClick={this.select.bind(null, 0)}>Gruppspel {this.props.completed[0]}</div>
-				<div className={this.state.show == 1 ? "selected" : null} onClick={this.select.bind(null, 1)}>Slutspel {this.props.completed[1]}</div>
+				<div className={this.state.show === 0 ? "selected" : null} onClick={this.select.bind(null, 0)}>Gruppspel {this.props.completed[0]}</div>
+				<div className={this.state.show === 1 ? "selected" : null} onClick={this.select.bind(null, 1)}>Slutspel {this.props.completed[1]}</div>
 			</nav>
 		);
 	}
@@ -164,13 +164,13 @@ class Content extends Component {
 			<div className="select-groups">
 				<Nav handler={this.select} completed={this.props.completed}></Nav>
 				<main>
-					<div className={this.state.show == 0 ? "show" : "hide"}>
+					<div className={this.state.show === 0 ? "show" : "hide"}>
 						<div>
 							<Groups data={this.state.data}></Groups>
 						</div>
 					</div>
 
-					<div className={this.state.show == 1 ? "show" : "hide"}>
+					<div className={this.state.show === 1 ? "show" : "hide"}>
 						<div className="padding-2">
 							<h3>Slutspel</h3>
 
@@ -214,15 +214,15 @@ class Groups extends Component {
 		let rows = [[]], j = 0, item;
 
 		for(let i = 0; i < this.state.data.groups.length; i++){
-			if(i == this.state.group){
+			if(i === this.state.group){
 				item = <div className="selected">{this.format[i]}</div>;
 			}else {
 				item = <div onClick={this.select.bind(null, i)}>{this.format[i]}</div>;
 			}
 
 			rows[j].push(item);
-			if((i+1) % this.state.size == 0){
-				if((i+1) != this.state.data.groups.length){
+			if((i+1) % this.state.size === 0){
+				if((i+1) !== this.state.data.groups.length){
 					rows.push([]);
 				}
 				j++;
@@ -241,7 +241,7 @@ class Groups extends Component {
 					<Group data={this.state.data.groups[this.state.group]} teams={this.state.data.teams}></Group>
 					<div className="group-info">
 						M = matcher spelade,
-						V = vunna, 
+						V = vunna,
 						O = oavgjorda,
 						GM = gjorda mål,
 						IM = insläppta mål,
@@ -251,7 +251,7 @@ class Groups extends Component {
 					<h4>Matchresultat</h4>
 					<Games id={this.state.group} data={this.state.data.games} teams={this.state.data.teams}></Games>
 				</div>
-				
+
 			</div>
 		);
 	}

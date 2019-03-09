@@ -176,7 +176,7 @@ class FutureGames extends Component {
 
   async removeMatch(e) {
     let counter = -1;
-    this.state.remove.map((item, i) => {
+    this.state.remove.forEach((item, i) => {
       if(item) {
         let removeArr = this.state.removing.slice();
         removeArr[i] = true;
@@ -188,7 +188,7 @@ class FutureGames extends Component {
             method: "DELETE",
             credentials: "include",
         }).then((response) => {
-            if(response.status != '200'){throw response.statusText;}
+            if(!response.ok){throw response.statusText;}
             return response.json();
         }).then(response => {
           this.createOptions();
@@ -206,7 +206,7 @@ class FutureGames extends Component {
 
   handleEnterPress(event) {
     event.preventDefault();
-    if(event.currentTarget.className == "okButton") {
+    if(event.currentTarget.className === "okButton") {
       this.handleSubmit(event);
     }
   }
@@ -244,12 +244,12 @@ class FutureGames extends Component {
       this.setState({submitting: submitArr, disabled: false});
 
       setTimeout(() => {
-        if(games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className == "okButtonSparat") {
+        if(games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className === "okButtonSparat") {
           games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className = "okButtonHiddenAfterSave";
         }
       }, 2000);
       setTimeout(() => {
-        if(games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className == "okButtonHiddenAfterSave") {
+        if(games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className === "okButtonHiddenAfterSave") {
           games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className = "okButtonHidden";
         }
       }, 3000);
@@ -263,12 +263,12 @@ class FutureGames extends Component {
       this.setState({ games: this.props.data.games, bracketGames: this.props.data.bracket});
 
       setTimeout(() => {
-        if(games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className == "okButtonError") {
+        if(games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className === "okButtonError") {
           games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className = "okButtonHiddenAfterError";
         }
       }, 2000);
       setTimeout(() => {
-        if(games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className == "okButtonHiddenAfterError") {
+        if(games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className === "okButtonHiddenAfterError") {
           games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className = "okButtonHidden";
         }
       }, 3000);
@@ -291,7 +291,6 @@ class FutureGames extends Component {
 		}).then(response => {
       this.props.fetchData();
       this.createOptions();
-      this.resultsHasInput();
     }).catch((error) => {
 			console.log(error);
       this.props.fetchData();
@@ -359,15 +358,15 @@ class FutureGames extends Component {
       }
 
       if(event.currentTarget.parentNode.childNodes[otherTeam].value !== "" && value !== "") {
-        if(value != this.state.gamesOld[matchId].results[0]) {
+        if(value !== this.state.gamesOld[matchId].results[0]) {
           games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className = "okButton";
         }
       }
       else {
-        if(document.querySelector(".buttons").childNodes[0].className == "okButton") {
+        if(document.querySelector(".buttons").childNodes[0].className === "okButton") {
           games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className = "okButtonHiddenAfterFail";
           setTimeout(() => {
-            if(games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className == "okButtonHiddenAfterFail") {
+            if(games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className === "okButtonHiddenAfterFail") {
               games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className = "okButtonHidden";
             }
           }, 500);
@@ -379,10 +378,10 @@ class FutureGames extends Component {
     }
 
     else {
-      if(document.querySelector(".buttons").childNodes[0].className == "okButton") {
+      if(document.querySelector(".buttons").childNodes[0].className === "okButton") {
         games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className = "okButtonHiddenAfterFail";
         setTimeout(() => {
-          if(games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className == "okButtonHiddenAfterFail") {
+          if(games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className === "okButtonHiddenAfterFail") {
             games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className = "okButtonHidden";
           }
         }, 500);
@@ -419,21 +418,21 @@ class FutureGames extends Component {
 
       if(event.currentTarget.parentNode.childNodes[otherTeam].value !== "" && value !== "") {
         if(this.props.bracket) {
-          if(value != this.state.bracketGamesOld[matchId].results[1]) {
+          if(value !== this.state.bracketGamesOld[matchId].results[1]) {
             games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className = "okButton";
           }
         }
         else {
-          if(value != this.state.gamesOld[matchId].results[1]) {
+          if(value !== this.state.gamesOld[matchId].results[1]) {
             games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className = "okButton";
           }
         }
       }
       else {
-        if(document.querySelector(".buttons").childNodes[0].className == "okButton") {
+        if(document.querySelector(".buttons").childNodes[0].className === "okButton") {
           games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className = "okButtonHiddenAfterFail";
           setTimeout(() => {
-            if(games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className == "okButtonHiddenAfterFail") {
+            if(games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className === "okButtonHiddenAfterFail") {
               games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className = "okButtonHidden";
             }
           }, 500);
@@ -445,10 +444,10 @@ class FutureGames extends Component {
     }
 
     else {
-      if(document.querySelector(".buttons").childNodes[0].className == "okButton") {
+      if(document.querySelector(".buttons").childNodes[0].className === "okButton") {
         games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className = "okButtonHiddenAfterFail";
         setTimeout(() => {
-          if(games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className == "okButtonHiddenAfterFail") {
+          if(games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className === "okButtonHiddenAfterFail") {
             games[relativeMatchId].childNodes[0].childNodes[3].childNodes[0].className = "okButtonHidden";
           }
         }, 500);
@@ -471,7 +470,7 @@ class FutureGames extends Component {
       return;
     }
 
-    if(teamId == 0) {
+    if(teamId === "0") {
       otherTeam = 2;
       this.handleResChangeOne(event, matchId, otherTeam, teamId);
     }
@@ -519,7 +518,7 @@ class FutureGames extends Component {
     let temp1 = JSON.stringify(this.props.data.games);
     let c = JSON.parse(temp1);
 
-    if(input.data.games.length != this.props.data.games.length) {
+    if(input.data.games.length !== this.props.data.games.length) {
       let f = Array.apply(null, Array(input.data.games.length)).map(function (x, i) { return false; });
       let g = Array.apply(null, Array(input.data.games.length)).map(function (x, i) {
         return null;
@@ -544,9 +543,6 @@ class FutureGames extends Component {
     rubrik = <h3>Matchresultat</h3>
 
     let counter = 0;
-    let completable = false;
-    let completed = false;
-    let submittedGamesCount = 0;
 
     games = this.state.games.map((item, index) => {
       let text = "";
@@ -568,9 +564,6 @@ class FutureGames extends Component {
       }
 
       ++counter;
-      if(item.status) {
-        ++submittedGamesCount;
-      }
       let select1;
       let select2;
       let res;
@@ -619,7 +612,6 @@ class FutureGames extends Component {
           maxMenuHeight={200}
           name={"team1"}
           onChange={(e) => {
-            const game = index;
             this.handleTeamChangeOne(e, index);
             return;
           }}
@@ -643,7 +635,6 @@ class FutureGames extends Component {
           maxMenuHeight={200}
           name={"team2"}
           onChange={(e) => {
-            const game = index;
             this.handleTeamChangeTwo(e, index);
             return;
           }}
@@ -668,7 +659,6 @@ class FutureGames extends Component {
             maxMenuHeight={200}
             name={"team1"}
             onChange={(e) => {
-              const game = index;
               this.handleTeamChangeOne(e, index);
               return;
             }}
@@ -695,7 +685,6 @@ class FutureGames extends Component {
             maxMenuHeight={200}
             name={"team2"}
             onChange={(e) => {
-              const game = index;
               this.handleTeamChangeTwo(e, index);
               return;
             }}
@@ -707,18 +696,18 @@ class FutureGames extends Component {
 
       res = (
         <div className="res">
-          <input type='text' value={item.results[0]} disabled={this.state.disabled} data-id="0" onChange={this.resultsHasInput}></input>
+          <input type='text' value={item.results[0]} disabled={this.state.disabled} data-id={0} onChange={this.resultsHasInput}></input>
           <div className="betweenLine"></div>
-          <input type='text' value={item.results[1]} disabled={this.state.disabled} data-id="2" onChange={this.resultsHasInput}></input>
+          <input type='text' value={item.results[1]} disabled={this.state.disabled} data-id={2} onChange={this.resultsHasInput}></input>
         </div>
       );
 
       if(item.teams[0] === null || item.teams[1] === null || this.state.teamOnes[index] === this.state.teamTwos[index]) {
         res = (
           <div style={{backgroundColor: "#ededed", borderColor: "#ccc"}} className="res" onClick={this.clickedDisabled}>
-            <input disabled type='text' value={item.results[0]} data-id="0"></input>
+            <input disabled type='text' value={item.results[0]} data-id={0}></input>
             <div className="betweenLine"></div>
-            <input disabled type='text' value={item.results[1]} data-id="2"></input>
+            <input disabled type='text' value={item.results[1]} data-id={2}></input>
           </div>
         );
       }

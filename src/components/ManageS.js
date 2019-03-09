@@ -183,15 +183,16 @@ class ManageS extends Component {
 				);
 			}
 			else {
+        let counter;
 				serier = this.state.data.map((item, index, array) => {
 
 					const datum = new Date(item.created);
-
+          counter = item.id;
 					return (
 							<div className="tur" key={item.id}>
 								<div>
 									<Link to={settings.url + "manage/" + item.id}>
-										<li>
+										<li key={index}>
 											<div className="turinfo">
 												<p>
 													{"Skapad: " + datum.getFullYear() + "-" + (parseInt(datum.getMonth())+1) + "-" + datum.getDate()}
@@ -209,7 +210,7 @@ class ManageS extends Component {
 				});
 
 				serier.push(
-					<div className="skapaNy" onClick={this.show}>
+					<div className="skapaNy" onClick={this.show} key={counter + 1}>
 							<div className="skapaNyTitel">
 								Skapa ny serie
 							</div>
@@ -220,11 +221,12 @@ class ManageS extends Component {
 			//console.log(window.innerHeight);
 	    return (
 				<div id="manageS">
-					<Modal show={this.state.status} onHide={this.close} style={{marginTop: "-25vh", paddingLeft: "0"}}>
-						 <Modal.Body>
-									<CreateS close={this.close}/>
-							</Modal.Body>
-				 </Modal>
+					<Modal centered="true" show={this.state.status} onHide={this.close}>
+		        <Modal.Body>
+              <div className="close" onClick={this.close}>&times;</div>
+							<CreateS close={this.close}/>
+            </Modal.Body>
+          </Modal>
 					<div className="rubrik">
 						<h2>Hantera serier</h2>
 					</div>
@@ -364,14 +366,13 @@ class CreateS extends Component {
 
 	remove(name, i){
 		const dummyteams = this.state.teams;
-		let removed = dummyteams.splice(i,1);
 
-				if(dummyteams.length < 2){
-					this.setState({teams: dummyteams, asterisk2: true});
-				}
-				else{
-					this.setState({teams: dummyteams});
-				}
+		if(dummyteams.length < 2){
+			this.setState({teams: dummyteams, asterisk2: true});
+		}
+		else{
+			this.setState({teams: dummyteams});
+		}
 	}
 
 	emptyField(event){
@@ -388,7 +389,7 @@ class CreateS extends Component {
 	createNew(e){
 		e.preventDefault();
 		//turnerningnamn,   lag minst 2 lag,   antal lag/grupp,
-		if(this.state.teams.length < 2 || (this.state.tNumbs < 2 && this.state.tNumbs > 20 || this.state.serieName.trim() == "" )){
+		if(this.state.teams.length < 2 || (this.state.tNumbs < 2 && this.state.tNumbs > 20) || this.state.serieName.trim() === "" ){
 				if(this.state.teams.length < 2) {
 					this.setState({teamsError: true, teamsErrormsg: "Lägg till minst två lag", teamsStyle: {borderColor: "red"}});
 					customStyles.control = (provided, state) => ({
@@ -402,7 +403,7 @@ class CreateS extends Component {
 				    }
 				  });
 				}
-				if(this.state.serieName.trim() == ""){this.setState({nameError: true, nameErrormsg: "Skriv in ett namn på din turnering", nameStyle: {borderColor: "red"}});}
+				if(this.state.serieName.trim() === ""){this.setState({nameError: true, nameErrormsg: "Skriv in ett namn på din serie", nameStyle: {borderColor: "red"}});}
 				return;
 		}
 
@@ -421,7 +422,7 @@ class CreateS extends Component {
 		})
 		.then(response => response.json())
 		.then(response => {
-			if(response.status == true){
+			if(response.status === true){
 				this.setState({id: response.id});
 				this.props.close();
 			}
@@ -444,7 +445,7 @@ class CreateS extends Component {
 		}
 
 		let lagholder = "";
-		if(this.state.teams.length == 0) {
+		if(this.state.teams.length === 0) {
 			lagholder = "Inga lag tillagda";
 		}
 		else {
@@ -478,7 +479,7 @@ class CreateS extends Component {
 								<label>
 									Serienamn{asterisk}
 								</label>
-								<input onKeyDown={this.handleKeyDown} style={this.state.nameStyle} type="text" className="fält name" onChange={this.serieName} maxlength="40"/>
+								<input onKeyDown={this.handleKeyDown} style={this.state.nameStyle} type="text" className="fält name" onChange={this.serieName} maxLength="40"/>
 								{nameerror}
 							</div>
 							<div className="form">

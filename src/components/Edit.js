@@ -8,7 +8,7 @@ import SettingsSerie from "./SettingsSerie";
 import ManageSerie from "./ManageSerie";
 // import FutureGames from './ManageTourComps/FutureGames';
 
-import '../css/test.scss';
+import '../css/edit.scss';
 
 
 class Edit extends Component {
@@ -45,7 +45,7 @@ class Edit extends Component {
             method: "GET",
             credentials: "include"
         }).then((response) => {
-            if(response.status != "200"){throw response.statusText;}
+            if(!response.ok){throw response.statusText;}
             return response.json();
         }).then((response) => {
             document.title = response.name;
@@ -115,8 +115,8 @@ class Edit extends Component {
         return(
             <div id="edit">
 
-                <Modal centered show={this.state.status} onHide={this.close}>
-                   <Modal.Body >
+                <Modal centered="true" show={this.state.status} onHide={this.close}>
+                   <Modal.Body>
                         <div className="close" onClick={this.close}>&times;</div>
                         <h3>Delningsbar länk till seriens visningssida</h3>
                         <div className="modal_wrap">

@@ -107,7 +107,7 @@ class Login extends Component {
 					userPlacehStyle: {color: "red"}
 				});
 			}
-			if(this.state.password == ""){
+			if(this.state.password === ""){
 				this.setState({
 					password_style: {borderColor: "red", transition: "border-color 1s"},
 					passPlacehStyle: {color: "red"}
@@ -126,14 +126,14 @@ class Login extends Component {
 		.then(response => {
 			console.log(response);
 			this.setState({loading: false});
-            if(response.login == true && response.activated == true){
+            if(response.login === true && response.activated === true){
               this.setState({login: true});
             }
-						if(response.activated == false) {
+						if(response.activated === false) {
 							this.setState({error: true, errormsg: "Kontot är inte verifierat. Ett nytt e-postmeddelande med instruktioner har skickats", password: "", password_style: {borderColor: "red", transition: "border-color 1s"}});
 							document.getElementById("password").value = ""; // borde göras i render()?
 						}
-						if(response.login == false) {
+						if(response.login === false) {
 							this.setState({
 								error: true,
 								errormsg: "Fel användarnamn eller lösenord",
@@ -374,7 +374,7 @@ class NewUser extends Component {
 
 	blurEmail(e) {
 		e.preventDefault();
-		if(!isEmail(e.target.value.toString()) && e.target.value.toString() != "") {
+		if(!isEmail(e.target.value.toString()) && e.target.value.toString() !== "") {
 			this.setState({
 				email_style: {borderColor: "red"},
 				emailPlacehStyle: {color: "red"},
@@ -403,7 +403,7 @@ class NewUser extends Component {
 
 	blurPass1(e) {
 		e.preventDefault();
-		if(e.target.value.toString() != document.querySelector(".pass2").childNodes[1].value.toString()) {
+		if(e.target.value.toString() !== document.querySelector(".pass2").childNodes[1].value.toString()) {
 			this.setState({
 				password2_style: {borderColor: "red"},
 				pass2PlacehStyle: {color: "red"},
@@ -435,7 +435,7 @@ class NewUser extends Component {
 
 	blurPass2(e) {
 		e.preventDefault();
-		if(e.target.value.toString() != document.querySelector(".pass1").childNodes[1].value.toString()) {
+		if(e.target.value.toString() !== document.querySelector(".pass1").childNodes[1].value.toString()) {
 			this.setState({
 				password2_style: {borderColor: "red"},
 				pass2PlacehStyle: {color: "red"},
@@ -469,7 +469,7 @@ class NewUser extends Component {
 		e.preventDefault();
 		this.focus(e);
 
-		if(e.target.value.toString().length == 40) {
+		if(e.target.value.toString().length === 40) {
 			let remove = e.target.value.toString().slice(0, -1);
 			e.target.value = remove;
 			this.setState({username: remove, user_style: {}, userPlacehStyle: {}, userError: false});
@@ -484,7 +484,7 @@ class NewUser extends Component {
 		e.preventDefault();
 		this.focus(e);
 
-		if(e.target.value.toString().length == 40) {
+		if(e.target.value.toString().length === 40) {
 			let remove = e.target.value.toString().slice(0, -1);
 			e.target.value = remove;
 			this.setState({email: remove, email_style: {}, emailPlacehStyle: {}, emailError: false});
@@ -498,7 +498,7 @@ class NewUser extends Component {
 		e.preventDefault();
 		this.focus(e);
 
-		if(e.target.value.toString().length == 40) {
+		if(e.target.value.toString().length === 40) {
 			let remove = e.target.value.toString().slice(0, -1);
 			e.target.value = remove;
 			this.setState({password1: remove, password1_style: {}, pass1PlacehStyle: {}, passError: false});
@@ -507,7 +507,7 @@ class NewUser extends Component {
 			this.setState({password1: e.target.value, password1_style: {}, pass1PlacehStyle: {}, passError: false});
 		}
 
-		if(e.target.value.toString() == document.querySelector(".pass2").childNodes[1].value.toString()) {
+		if(e.target.value.toString() === document.querySelector(".pass2").childNodes[1].value.toString()) {
 			this.setState({
 				password2_style: {},
 				pass2PlacehStyle: {},
@@ -515,7 +515,7 @@ class NewUser extends Component {
 				pass1PlacehStyle: {},
 				passError: false
 			});
-			if(document.querySelector(".pass2").childNodes[1].value.toString() != "") {this.setState({pass2PlacehStyle: {color: "black"}});}
+			if(document.querySelector(".pass2").childNodes[1].value.toString() !== "") {this.setState({pass2PlacehStyle: {color: "black"}});}
 			else {this.setState({pass2PlacehStyle: {color: "rgba(85, 122, 149, 0.4)"}});}
 		}
   }
@@ -524,7 +524,7 @@ class NewUser extends Component {
 		e.preventDefault();
 		this.focus(e);
 
-		if(e.target.value.toString().length == 40) {
+		if(e.target.value.toString().length === 40) {
 			let remove = e.target.value.toString().slice(0, -1);
 			e.target.value = remove;
 			this.setState({password2: remove, password2_style: {}, pass2PlacehStyle: {}, error: false});
@@ -533,14 +533,14 @@ class NewUser extends Component {
 			this.setState({password2: e.target.value, password2_style: {}, pass2PlacehStyle: {}, error: false});
 		}
 
-		if(e.target.value.toString() == document.querySelector(".pass1").childNodes[1].value.toString()) {
+		if(e.target.value.toString() === document.querySelector(".pass1").childNodes[1].value.toString()) {
 			this.setState({
 				password2_style: {},
 				pass2PlacehStyle: {},
 				password1_style: {},
 				passError: false
 			});
-			if(document.querySelector(".pass1").childNodes[1].value.toString() != "") {this.setState({pass1PlacehStyle: {color: "black"}});}
+			if(document.querySelector(".pass1").childNodes[1].value.toString() !== "") {this.setState({pass1PlacehStyle: {color: "black"}});}
 			else {this.setState({pass1PlacehStyle: {color: "rgba(85, 122, 149, 0.4)"}});}
 		}
   }
@@ -548,21 +548,21 @@ class NewUser extends Component {
 	submitUser(e){
 		e.preventDefault();
 
-		if(this.state.username == "" || this.state.password1 == "" || this.state.password2 == "" || this.state.email == "") {
-			if(this.state.username == ""){this.setState({username_style: {borderColor: "red", transition: "border-color 1s"}, userPlacehStyle: {color: "red"}});}
-			if(this.state.password1 == ""){this.setState({password1_style: {borderColor: "red", transition: "border-color 1s"}, pass1PlacehStyle: {color: "red"}});}
-			if(this.state.password2 == ""){this.setState({password2_style: {borderColor: "red", transition: "border-color 1s"}, pass2PlacehStyle: {color: "red"}});}
-			if(this.state.email == ""){this.setState({email_style: {borderColor: "red", transition: "border-color 1s"}, emailPlacehStyle: {color: "red"}});}
+		if(this.state.username === "" || this.state.password1 === "" || this.state.password2 === "" || this.state.email === "") {
+			if(this.state.username === ""){this.setState({username_style: {borderColor: "red", transition: "border-color 1s"}, userPlacehStyle: {color: "red"}});}
+			if(this.state.password1 === ""){this.setState({password1_style: {borderColor: "red", transition: "border-color 1s"}, pass1PlacehStyle: {color: "red"}});}
+			if(this.state.password2 === ""){this.setState({password2_style: {borderColor: "red", transition: "border-color 1s"}, pass2PlacehStyle: {color: "red"}});}
+			if(this.state.email === ""){this.setState({email_style: {borderColor: "red", transition: "border-color 1s"}, emailPlacehStyle: {color: "red"}});}
 			return;
 		}
 
-		if(this.state.password1 != this.state.password2) {
+		if(this.state.password1 !== this.state.password2) {
 			this.setState({passErrormsg: "Fälten måste matcha varandra.", passError: true});
 			this.setState({password2_style: {borderColor: "red", transition: "border-color 1s"}});
 			return;
 		}
 
-		if(this.state.userError == true || this.state.emailError == true || this.state.passError == true) {
+		if(this.state.userError === true || this.state.emailError === true || this.state.passError === true) {
 			return;
 		}
 
@@ -576,11 +576,11 @@ class NewUser extends Component {
 		.then(response => {
 			console.log(response);
 			this.setState({loading: false});
-            if(response.user == true && response.email == true && response.pass == true) {
+            if(response.user === true && response.email === true && response.pass === true) {
               document.querySelector(".usercreated").style.display = "block";
               document.querySelector(".createuser").style.display = "none";
             }
-						if(response.user == false) {
+						if(response.user === false) {
 							this.setState({
 								username_style: {borderColor: "red"},
 								userPlacehStyle: {color: "red"},
@@ -588,7 +588,7 @@ class NewUser extends Component {
 								userErrormsg: "Användarnamnet är upptaget."
 							});
 						}
-						if(response.email == false) {
+						if(response.email === false) {
 							this.setState({
 								email_style: {borderColor: "red"},
 								emailPlacehStyle: {color: "red"},
@@ -754,7 +754,7 @@ class LostCredentials extends Component {
 
 	blurEmail(e) {
 		e.preventDefault();
-		if(!isEmail(e.target.value.toString()) && e.target.value.toString() != "") {
+		if(!isEmail(e.target.value.toString()) && e.target.value.toString() !== "") {
 			this.setState({
 				email_style: {borderColor: "red"},
 				emailPlacehStyle: {color: "red"},
@@ -781,11 +781,11 @@ class LostCredentials extends Component {
 		}
 	}
 
-	email(e){
+	email(e) {
 		e.preventDefault();
 		this.focus(e);
 
-		if(e.target.value.toString().length == 40) {
+		if(e.target.value.toString().length === 40) {
 			let remove = e.target.value.toString().slice(0, -1);
 			e.target.value = remove;
 			this.setState({email: remove, email_style: {}, emailPlacehStyle: {}, emailError: false});
@@ -798,8 +798,8 @@ class LostCredentials extends Component {
 	submitEmail(e){
 		e.preventDefault();
 
-		if(this.state.email == "") {
-			if(this.state.email == ""){this.setState({email_style: {borderColor: "red", transition: "border-color 1s"}, emailPlacehStyle: {color: "red"}});}
+		if(this.state.email === "") {
+			if(this.state.email === ""){this.setState({email_style: {borderColor: "red", transition: "border-color 1s"}, emailPlacehStyle: {color: "red"}});}
 			return;
 		}
 
@@ -813,7 +813,7 @@ class LostCredentials extends Component {
 			return;
 		}
 
-		if(this.state.emailError == true) {
+		if(this.state.emailError === true) {
 			return;
 		}
 
@@ -826,7 +826,7 @@ class LostCredentials extends Component {
 		.then(response => {
 			console.log(response);
 			this.setState({loading: false});
-            if(response.email == true) {
+            if(response.email === true) {
               document.querySelector(".usercreated").style.display = "block";
               document.querySelector(".createuser").style.display = "none";
             }
@@ -948,7 +948,7 @@ class NewPassword extends Component {
 		.then(response => {
 			console.log(response);
 			this.setState({loadPage: false});
-			if(response.password == true) {
+			if(response.password === true) {
 				this.setState({
 					accountFound: true,
 					username: response.username
@@ -959,7 +959,7 @@ class NewPassword extends Component {
 
 	async checkGoBack() {
 		await this.fetchData();
-		if(this.state.accountFound == false) {
+		if(this.state.accountFound === false) {
 			this.props.goBack();
 		}
 	}
@@ -981,7 +981,7 @@ class NewPassword extends Component {
 
 	blurPass1(e) {
 		e.preventDefault();
-		if(e.target.value.toString() != document.querySelector(".pass2").childNodes[1].value.toString()) {
+		if(e.target.value.toString() !== document.querySelector(".pass2").childNodes[1].value.toString()) {
 			this.setState({
 				password2_style: {borderColor: "red"},
 				pass2PlacehStyle: {color: "red"},
@@ -1013,7 +1013,7 @@ class NewPassword extends Component {
 
 	blurPass2(e) {
 		e.preventDefault();
-		if(e.target.value.toString() != document.querySelector(".pass1").childNodes[1].value.toString()) {
+		if(e.target.value.toString() !== document.querySelector(".pass1").childNodes[1].value.toString()) {
 			this.setState({
 				password2_style: {borderColor: "red"},
 				pass2PlacehStyle: {color: "red"},
@@ -1047,7 +1047,7 @@ class NewPassword extends Component {
 		e.preventDefault();
 		this.focus(e);
 
-		if(e.target.value.toString().length == 40) {
+		if(e.target.value.toString().length === 40) {
 			let remove = e.target.value.toString().slice(0, -1);
 			e.target.value = remove;
 			this.setState({password1: remove, password1_style: {}, pass1PlacehStyle: {}, passError: false});
@@ -1056,7 +1056,7 @@ class NewPassword extends Component {
 			this.setState({password1: e.target.value, password1_style: {}, pass1PlacehStyle: {}, passError: false});
 		}
 
-		if(e.target.value.toString() == document.querySelector(".pass2").childNodes[1].value.toString()) {
+		if(e.target.value.toString() === document.querySelector(".pass2").childNodes[1].value.toString()) {
 			this.setState({
 				password2_style: {},
 				pass2PlacehStyle: {color: "black"},
@@ -1064,7 +1064,7 @@ class NewPassword extends Component {
 				pass1PlacehStyle: {},
 				passError: false
 			});
-			if(document.querySelector(".pass2").childNodes[1].value.toString() != "") {this.setState({pass2PlacehStyle: {color: "black"}});}
+			if(document.querySelector(".pass2").childNodes[1].value.toString() !== "") {this.setState({pass2PlacehStyle: {color: "black"}});}
 			else {this.setState({pass2PlacehStyle: {color: "#ccc"}});}
 		}
   }
@@ -1073,7 +1073,7 @@ class NewPassword extends Component {
 		e.preventDefault();
 		this.focus(e);
 
-		if(e.target.value.toString().length == 40) {
+		if(e.target.value.toString().length === 40) {
 			let remove = e.target.value.toString().slice(0, -1);
 			e.target.value = remove;
 			this.setState({password2: remove, password2_style: {}, pass2PlacehStyle: {}, error: false});
@@ -1082,14 +1082,14 @@ class NewPassword extends Component {
 			this.setState({password2: e.target.value, password2_style: {}, pass2PlacehStyle: {}, error: false});
 		}
 
-		if(e.target.value.toString() == document.querySelector(".pass1").childNodes[1].value.toString()) {
+		if(e.target.value.toString() === document.querySelector(".pass1").childNodes[1].value.toString()) {
 			this.setState({
 				password2_style: {},
 				pass2PlacehStyle: {},
 				password1_style: {},
 				passError: false
 			});
-			if(document.querySelector(".pass1").childNodes[1].value.toString() != "") {this.setState({pass1PlacehStyle: {color: "black"}});}
+			if(document.querySelector(".pass1").childNodes[1].value.toString() !== "") {this.setState({pass1PlacehStyle: {color: "black"}});}
 			else {this.setState({pass1PlacehStyle: {color: "#ccc"}});}
 		}
   }
@@ -1097,19 +1097,19 @@ class NewPassword extends Component {
 	submitPassword(e){
 		e.preventDefault();
 
-		if(this.state.password1 == "" || this.state.password2 == "") {
-			if(this.state.password1 == ""){this.setState({password1_style: {borderColor: "red", transition: "border-color 1s"}, pass1PlacehStyle: {color: "red"}});}
-			if(this.state.password2 == ""){this.setState({password2_style: {borderColor: "red", transition: "border-color 1s"}, pass2PlacehStyle: {color: "red"}});}
+		if(this.state.password1 === "" || this.state.password2 === "") {
+			if(this.state.password1 === ""){this.setState({password1_style: {borderColor: "red", transition: "border-color 1s"}, pass1PlacehStyle: {color: "red"}});}
+			if(this.state.password2 === ""){this.setState({password2_style: {borderColor: "red", transition: "border-color 1s"}, pass2PlacehStyle: {color: "red"}});}
 			return;
 		}
 
-		if(this.state.password1 != this.state.password2) {
+		if(this.state.password1 !== this.state.password2) {
 			this.setState({passErrormsg: "Fälten måste matcha varandra.", passError: true});
 			this.setState({password2_style: {borderColor: "red", transition: "border-color 1s"}});
 			return;
 		}
 
-		if(this.state.passError == true) {
+		if(this.state.passError === true) {
 			return;
 		}
 
@@ -1134,14 +1134,6 @@ class NewPassword extends Component {
 			submit = <div className="loading"></div>;
 		}
 
-		let usererror = <div className="error-hide"></div>;
-		if(this.state.userError){
-			usererror = <div className="error-show">{this.state.userErrormsg}</div>;
-		}
-		let emailerror = <div className="error-hide"></div>;
-		if(this.state.emailError){
-			emailerror = <div className="error-show">{this.state.emailErrormsg}</div>;
-		}
 		let passerror = <div className="error-hide"></div>;
 		if(this.state.passError){
 			passerror = <div className="error-show">{this.state.passErrormsg}</div>;

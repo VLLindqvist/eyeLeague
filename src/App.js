@@ -22,11 +22,11 @@ import Verify from "./components/Verify";
 class App extends Component {
 	render() {
 		let url = window.location.href.replace("http://", "").replace(".vlq.se", "").split("/");
-		console.log(url);
+		// console.log(url);
 		if(url[0] === "inside" || url[0] === "localhost:3000") {
 			settings.api = "http://192.168.1.3:3002/";
 		}
-		console.log(settings.api);
+		// console.log(settings.api);
 		return(
 			<BrowserRouter>
 				<Switch>
@@ -90,7 +90,7 @@ class Admin extends Component {
 			credentials: "include"
 		})
 		.then(response => {
-			if(response.status == '401'){throw 0;};
+			if(!response.ok){throw response.statusText;};
 			return response.json();
 		})
 		.then(response => {
@@ -133,7 +133,7 @@ class Admin extends Component {
 		// </nav
 		//<Link to={settings.url + "manage/"}><img src={logo} alt="logo my logo"></img></Link>
 
-		const url = window.location.href.split("/").filter(String);
+		// const url = window.location.href.split("/").filter(String);
 		// console.log(url[0] + "//account." + url[1]);
 		return(
 			<div>

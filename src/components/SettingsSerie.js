@@ -4,7 +4,7 @@ import { Modal } from 'react-bootstrap';
 
 import settings from "../settings.json";
 
-import '../css/test.scss';
+import '../css/edit.scss';
 
 import deleteIcon from '../bilder/delete.svg';
 
@@ -68,7 +68,7 @@ class Settings extends Component {
             credentials: "include",
         })
 		.then((response) => {
-            if(response.status != '200'){throw response.statusText;}
+            if(!response.ok){throw response.statusText;}
             return response.json();
         })
 		.then(response => {
@@ -100,7 +100,7 @@ class Settings extends Component {
           method: "DELETE",
           credentials: "include",
       }).then((response) => {
-          if(response.status != '200'){throw response.statusText;}
+          if(!response.ok){throw response.statusText;}
           return response.json();
       }).then(response => {
           this.setState({redirect: true});
@@ -132,7 +132,7 @@ class Settings extends Component {
 
         const teams = this.state.data.teams.map((item, i) => {
           return(
-            <div>
+            <div key={i}>
               <div>Lag {i + 1}</div>
               <input data-id={i} id="title" type="text" defaultValue={item} onChange={this.changes}></input>
             </div>
@@ -156,7 +156,7 @@ class Settings extends Component {
                 <div className="head">
                   <h2>Inställningar</h2>
                   <div className="remove" onClick={this.show}>
-                    <img className="deleteIcon" src={deleteIcon} alt="image/svg+xml"></img>
+                    <img className="deleteIcon" src={deleteIcon} alt="svg+xml"></img>
                   </div>
                 </div>
 
