@@ -8,7 +8,7 @@
     "bowser": "^2.0.0-beta.3",
     "dom-helpers": "^3.4.0",
     "is-email": "^1.0.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "react": "^16.13.1",
     "react-addons-css-transition-group": "^15.6.2",
     "react-addons-shallow-compare": "^15.6.2",
